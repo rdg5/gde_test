@@ -1,5 +1,5 @@
 const request = require("supertest");
-const { app, products } = require("../app");
+const { app, products } = require("../../app");
 
 describe("Integration Test - Express /products", () => {
   beforeEach(() => {

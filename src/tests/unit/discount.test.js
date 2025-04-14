@@ -1,4 +1,4 @@
-const { calculateDiscount } = require("../discount");
+const { calculateDiscount } = require("../../discount");
 
 describe("Unit Test - calculateDiscount", () => {
   test("10% off of 100 => 90", () => {
