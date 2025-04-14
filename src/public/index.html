@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>My E2E Demo</title>
+  </head>
+  <body>
+    <h1>Products</h1>
+    <button id="fetchBtn">Fetch Products</button>
+    <ul id="productList"></ul>
+
+    <script>
+      const fetchBtn = document.getElementById("fetchBtn");
+      const productList = document.getElementById("productList");
+
+      fetchBtn.addEventListener("click", async () => {
+        const res = await fetch("/products");
+        const data = await res.json();
+        productList.innerHTML = data
+          .map((p) => `<li>${p.name} - $${p.price}</li>`)
+          .join("");
+      });
+    </script>
+  </body>
+</html>
