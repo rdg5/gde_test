@@ -1,31 +1,25 @@
-// app.js
 const express = require("express");
 const path = require("path");
 const { calculateDiscount } = require("./discount");
 
 const app = express();
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "../public")));
 
-// in-memory "adatbázis"
+// db
 const products = [
   { id: 1, name: "Laptop", price: 1000 },
   { id: 2, name: "Mouse", price: 25 },
 ];
 
-// statikus fájlok kiszolgálása -> public/index.html
-app.use(express.static(path.join(__dirname, "../public")));
-
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/public/index.html")
 });
 
-// GET /products - egyszerű listázás
 app.get("/products", (req, res) => {
   res.json(products);
 });
 
-
-// GET /products/:id
 app.get("/products/:id", (req, res) => {
   const productId = Number(req.params.id);
   const product = products.find((p) => p.id === productId);
@@ -35,7 +29,6 @@ app.get("/products/:id", (req, res) => {
   res.json(product);
 });
 
-// POST /products/:id/discount {percent}
 app.post("/products/:id/discount", (req, res) => {
   const productId = Number(req.params.id);
   const product = products.find((p) => p.id === productId);

@@ -1,12 +1,12 @@
-const { calculateDiscount } = require("../../discount");
+const { calculateDiscount } = require('../../discount')
 
-describe("Unit Test - calculateDiscount", () => {
-  test("10% off of 100 => 90", () => {
-    const result = calculateDiscount(100, 10);
-    expect(result).toBe(90);
-  });
+describe("Calculate discount unit test", () => {
+    test("If total is 100, it retuns 90 for 10% discount", () => {
+        const result = calculateDiscount(100,10)
+        expect(result).toBe(90)
+    })
 
-  test("Throws error if discount > 100", () => {
-    expect(() => calculateDiscount(100, 200)).toThrow("Invalid discount percentage");
-  });
-});
+    test("Throws an error if price is over 100", () => {
+        expect(() => calculateDiscount(100, 200 )).toThrow("Invalid discount percentage")
+    })
+})
